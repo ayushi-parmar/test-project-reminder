@@ -1,0 +1,116 @@
+<h2 class="py-5" style="text-align: center;text-transform: uppercase;">{{title}}</h2>
+<!-- <h2> reminder form</h2> -->
+<div class="container">
+    <div class="row">
+
+      <div class="col-sm-6 col-md-6 ">
+          <div class="card">
+        <div class="card1">
+
+              <div class="card-body">
+                  <div class="table-responsive">          
+
+                  <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th class="w-25">Remainder name</th>
+                          <th class="w-25">Time</th>
+                          <th class="w-25">Iteration </th>
+                          
+                        </tr>
+                      </thead>
+                      <tbody>
+                      
+                        <tr *ngFor="let user of users  let i=index">
+                          <td>
+                            <input type="text" class="w-50" [disabled]="!user.edit" [(ngModel)]="user.Name" name="name" >
+                          </td>
+                          <td>
+                            <input type="text" class="w-50" [disabled]="!user.edit" [(ngModel)]="user.Time" name="time">
+                          </td>
+                          <td>
+                            <input type="text" class="w-50" [disabled]="!user.edit" [(ngModel)]="user.Iteration" name="iteration">
+                          </td>
+                            <button type="button" class="btn btn-primary " (click)=details(i)> details</button>   
+                            <button type="button" class="btn btn-primary " (click)=delete(i)> delete</button>   
+
+                                                                 
+                        </tr>
+                                          
+                      </tbody>
+                    </table>
+                    </div>
+
+              </div>
+          </div>
+          </div>
+      </div>
+
+      <div class="col-sm-6 col-md-6 ">
+          <div class="card">
+        <div class="card2">
+
+              <div class="card-body">
+
+                <form  [formGroup]="notificationForm">
+
+                       <div class="form-group">
+                        <label>Reminder name:</label>
+                        <input formControlName="name" type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }"/>
+                        <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                            <div *ngIf="f.name.errors.required"> Name is required</div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label>iteration:</label>
+                        <input formControlName="iteration" type="number" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.iteration.errors }"/>
+                        <div *ngIf="submitted && f.iteration.errors" class="invalid-feedback">
+                            <div *ngIf="f.iteration.errors.required"> iteration is required</div>
+                        </div>
+                      </div>  
+
+                     
+                      
+                      <div class="form-group">
+
+                <div class="btn-list">
+                      
+                    <div>
+                      <input id="time1" type="radio" class="custom-control-input" value="1min" name="time" formControlName="time" >
+                      <label class="custom-control-label" for="time1">1min</label>
+                    </div>
+        
+                    <div>
+                      <input id="time2" type="radio" class="custom-control-input" value="2min" name="time" formControlName="time">
+                      <label class="custom-control-label" for="time2">2min</label>
+                    </div>
+
+                    <div>
+                      <input id="time3" type="radio" class="custom-control-input" value="5min" name="time" formControlName="time">
+                      <label class="custom-control-label" for="time3">5min</label>
+                    </div>
+               </div>
+                   <!-- <div *ngIf="submitted && f.time.errors" class="invalid-feedback">
+                              <div *ngIf="f.time.required"> time is required</div>
+                   </div> -->
+                      </div>
+
+
+                 
+                  <div class="add-btn">
+                  <button style="text-align: right;"type="button" class="btn btn-primary" *ngIf="show" (click)=myFunction();add()>add</button> 
+                  <button style="text-align: right;"type="button" class="btn btn-primary" *ngIf="!show" (click)=save()>save</button> 
+                  </div>
+
+
+              </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+ 
